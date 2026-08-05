@@ -32,6 +32,31 @@ export const Navbar: React.FC<NavbarProps> = ({ onRequestDemo }) => {
     { name: 'Contact', href: '#contact' },
   ];
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+
+    if (!href || href === '#') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    const targetId = href.replace('#', '');
+    
+    // Defer slightly so mobile menu collapse animation doesn't offset scroll positioning
+    setTimeout(() => {
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (window.history.pushState) {
+          window.history.pushState(null, '', href);
+        }
+      } else {
+        window.location.hash = href;
+      }
+    }, 50);
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -43,7 +68,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onRequestDemo }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3 group">
+          <a
+            href="#"
+            onClick={(e) => handleNavClick(e, '#')}
+            className="flex items-center gap-3 group"
+          >
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 p-0.5 shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform duration-300">
               <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
                 <Code2 className="w-5 h-5 text-blue-400 group-hover:rotate-12 transition-transform duration-300" />
@@ -65,6 +94,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onRequestDemo }) => {
               <a
                 key={link.name}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="text-xs font-medium text-slate-300 hover:text-white px-3 py-1.5 rounded-full hover:bg-slate-800/60 transition-colors"
               >
                 {link.name}
@@ -128,7 +158,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onRequestDemo }) => {
                 <a
                   key={link.name}
                   href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="text-xs font-medium text-slate-300 hover:text-blue-400 bg-slate-900/60 p-2.5 rounded-lg border border-slate-800/60 transition-colors text-center"
                 >
                   {link.name}

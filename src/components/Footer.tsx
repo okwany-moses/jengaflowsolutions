@@ -5,6 +5,27 @@ import { motion, AnimatePresence } from 'motion/react';
 export const Footer: React.FC = () => {
   const [showSeoModal, setShowSeoModal] = useState(false);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+
+    if (!href || href === '#') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    const targetId = href.replace('#', '');
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (window.history.pushState) {
+        window.history.pushState(null, '', href);
+      }
+    } else {
+      window.location.hash = href;
+    }
+  };
+
   const schemaJson = {
     '@context': 'https://schema.org',
     '@type': 'TechnologyCompany',
@@ -106,12 +127,12 @@ export const Footer: React.FC = () => {
               Core Services
             </h4>
             <ul className="space-y-2 text-xs">
-              <li><a href="#services" className="hover:text-blue-400 transition-colors">AI & Gemini Integrations</a></li>
-              <li><a href="#services" className="hover:text-blue-400 transition-colors">Custom Web Applications</a></li>
-              <li><a href="#services" className="hover:text-blue-400 transition-colors">Enterprise Mobile Apps</a></li>
-              <li><a href="#services" className="hover:text-blue-400 transition-colors">Cloud & DevOps Clusters</a></li>
-              <li><a href="#services" className="hover:text-blue-400 transition-colors">Cybersecurity & RBAC</a></li>
-              <li><a href="#services" className="hover:text-blue-400 transition-colors">M-Pesa API Automation</a></li>
+              <li><a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-blue-400 transition-colors">AI & Gemini Integrations</a></li>
+              <li><a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-blue-400 transition-colors">Custom Web Applications</a></li>
+              <li><a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-blue-400 transition-colors">Enterprise Mobile Apps</a></li>
+              <li><a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-blue-400 transition-colors">Cloud & DevOps Clusters</a></li>
+              <li><a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-blue-400 transition-colors">Cybersecurity & RBAC</a></li>
+              <li><a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-blue-400 transition-colors">M-Pesa API Automation</a></li>
             </ul>
           </div>
 
@@ -121,12 +142,12 @@ export const Footer: React.FC = () => {
               Turnkey Software
             </h4>
             <ul className="space-y-2 text-xs">
-              <li><a href="#products" className="hover:text-blue-400 transition-colors">EduFlow School Portal</a></li>
-              <li><a href="#products" className="hover:text-blue-400 transition-colors">CareFlow Hospital ERP</a></li>
-              <li><a href="#products" className="hover:text-blue-400 transition-colors">GraceFlow Church Suite</a></li>
-              <li><a href="#products" className="hover:text-blue-400 transition-colors">PeopleFlow HR & Payroll</a></li>
-              <li><a href="#products" className="hover:text-blue-400 transition-colors">RetailFlow Cloud POS</a></li>
-              <li><a href="#products" className="hover:text-blue-400 transition-colors">EstateFlow Rental System</a></li>
+              <li><a href="#products" onClick={(e) => handleNavClick(e, '#products')} className="hover:text-blue-400 transition-colors">EduFlow School Portal</a></li>
+              <li><a href="#products" onClick={(e) => handleNavClick(e, '#products')} className="hover:text-blue-400 transition-colors">CareFlow Hospital ERP</a></li>
+              <li><a href="#products" onClick={(e) => handleNavClick(e, '#products')} className="hover:text-blue-400 transition-colors">GraceFlow Church Suite</a></li>
+              <li><a href="#products" onClick={(e) => handleNavClick(e, '#products')} className="hover:text-blue-400 transition-colors">PeopleFlow HR & Payroll</a></li>
+              <li><a href="#products" onClick={(e) => handleNavClick(e, '#products')} className="hover:text-blue-400 transition-colors">RetailFlow Cloud POS</a></li>
+              <li><a href="#products" onClick={(e) => handleNavClick(e, '#products')} className="hover:text-blue-400 transition-colors">EstateFlow Rental System</a></li>
             </ul>
           </div>
 
@@ -136,11 +157,11 @@ export const Footer: React.FC = () => {
               Company & Technical
             </h4>
             <ul className="space-y-2 text-xs">
-              <li><a href="#founder" className="hover:text-blue-400 transition-colors">Founder Profile (Moses Otieno Okwany)</a></li>
-              <li><a href="#case-studies" className="hover:text-blue-400 transition-colors">Gideons Kenya Case Study</a></li>
-              <li><a href="#why-us" className="hover:text-blue-400 transition-colors">Engineering Philosophy</a></li>
-              <li><a href="#pricing" className="hover:text-blue-400 transition-colors">SME Package Pricing</a></li>
-              <li><a href="#faq" className="hover:text-blue-400 transition-colors">Help & FAQ</a></li>
+              <li><a href="#founder" onClick={(e) => handleNavClick(e, '#founder')} className="hover:text-blue-400 transition-colors">Founder Profile (Moses Otieno Okwany)</a></li>
+              <li><a href="#case-studies" onClick={(e) => handleNavClick(e, '#case-studies')} className="hover:text-blue-400 transition-colors">Gideons Kenya Case Study</a></li>
+              <li><a href="#why-us" onClick={(e) => handleNavClick(e, '#why-us')} className="hover:text-blue-400 transition-colors">Engineering Philosophy</a></li>
+              <li><a href="#pricing" onClick={(e) => handleNavClick(e, '#pricing')} className="hover:text-blue-400 transition-colors">SME Package Pricing</a></li>
+              <li><a href="#faq" onClick={(e) => handleNavClick(e, '#faq')} className="hover:text-blue-400 transition-colors">Help & FAQ</a></li>
               <li>
                 <button
                   onClick={() => setShowSeoModal(true)}

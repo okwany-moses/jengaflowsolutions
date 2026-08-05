@@ -5,7 +5,7 @@ import { Sparkles, ArrowRight, Clock, Calendar } from 'lucide-react';
 
 export const BlogPreview: React.FC = () => {
   return (
-    <section className="py-24 bg-slate-900/60 relative overflow-hidden">
+    <section id="blog" className="py-24 bg-slate-900/60 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
