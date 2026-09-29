@@ -97,17 +97,17 @@ spec:
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
               </span>
               <Sparkles className="w-3.5 h-3.5 text-blue-400" />
-              <span>JengaFlow Solutions &bull; Enterprise Software Architecture</span>
+              <span>Global Software Engineering &bull; Kenya, USA & Europe</span>
             </div>
 
             {/* Headline */}
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15]">
-              Building <span className="gradient-text">Intelligent Digital</span> Solutions for Tomorrow.
+              Building <span className="gradient-text">World-Class Software</span> At Accessible Global Rates.
             </h1>
 
             {/* Paragraph Description */}
             <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-              We design and engineer enterprise-grade software systems, M-Pesa automated platforms, cloud ERPs, and AI-powered mobile apps that empower businesses to scale securely and efficiently.
+              We design and engineer enterprise-grade web applications, automated payment portals, custom cloud ERPs, and high-performance digital platforms that empower Kenyan SMEs and international companies to scale rapidly.
             </p>
 
             {/* Trust Badges */}
@@ -155,19 +155,19 @@ spec:
               </a>
             </div>
 
-            {/* Stats summary strip */}
-            <div className="pt-6 border-t border-slate-800/80 grid grid-cols-3 gap-4 text-center lg:text-left">
-              <div>
-                <div className="font-display text-2xl font-bold text-white">150+</div>
-                <div className="text-xs text-slate-400 font-medium">Projects Deployed</div>
+            {/* Value Highlights */}
+            <div className="pt-6 border-t border-slate-800/80 grid grid-cols-1 sm:grid-cols-3 gap-3 text-center sm:text-left">
+              <div className="bg-slate-900/50 p-3 rounded-xl border border-slate-800/80">
+                <div className="font-display font-bold text-sm text-emerald-400">Flexible Installments</div>
+                <div className="text-[11px] text-slate-400 mt-0.5">2 to 3 milestone split payments</div>
               </div>
-              <div>
-                <div className="font-display text-2xl font-bold text-blue-400">99.8%</div>
-                <div className="text-xs text-slate-400 font-medium">Client Retention</div>
+              <div className="bg-slate-900/50 p-3 rounded-xl border border-slate-800/80">
+                <div className="font-display font-bold text-sm text-blue-400">100% Code Ownership</div>
+                <div className="text-[11px] text-slate-400 mt-0.5">Full source code & IP delivery</div>
               </div>
-              <div>
-                <div className="font-display text-2xl font-bold text-purple-400">&lt; 15 min</div>
-                <div className="text-xs text-slate-400 font-medium">SLA Support Line</div>
+              <div className="bg-slate-900/50 p-3 rounded-xl border border-slate-800/80">
+                <div className="font-display font-bold text-sm text-purple-400">Rapid Delivery</div>
+                <div className="text-[11px] text-slate-400 mt-0.5">3–5 days web / 14 days systems</div>
               </div>
             </div>
           </motion.div>
@@ -261,33 +261,42 @@ spec:
         {/* Trusted By Enterprise Clients Logo Banner */}
         <div className="mt-16 pt-10 border-t border-slate-800/60">
           <p className="text-center text-xs font-semibold text-slate-400 uppercase tracking-widest mb-6">
-            Trusted by Forward-Thinking Enterprises & Organizations
+            Trusted by Forward-Thinking Organizations & Live Production Platforms
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14 opacity-75 hover:opacity-100 transition-opacity">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8 opacity-85 hover:opacity-100 transition-opacity">
+            <a
+              href="https://gideonsministry.church/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-slate-300 hover:text-white font-bold text-xs sm:text-sm tracking-wide bg-slate-900/80 px-4 py-2 rounded-xl border border-slate-800 transition-all hover:border-blue-500/40 hover:scale-105"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>GIDEONS MINISTRY CHURCH</span>
+            </a>
+
             <a
               href="https://gideonskenya.org/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-slate-300 hover:text-white font-bold text-sm tracking-wide bg-slate-900/60 px-4 py-2 rounded-xl border border-slate-800 transition-all hover:border-blue-500/40"
+              className="flex items-center gap-2 text-slate-300 hover:text-white font-bold text-xs sm:text-sm tracking-wide bg-slate-900/80 px-4 py-2 rounded-xl border border-slate-800 transition-all hover:border-blue-500/40 hover:scale-105"
             >
-              <div className="w-2 h-2 rounded-full bg-blue-500" />
+              <span className="w-2 h-2 rounded-full bg-blue-500" />
               <span>GIDEONS KENYA</span>
             </a>
-            <div className="flex items-center gap-2 text-slate-400 font-semibold text-sm bg-slate-900/40 px-4 py-2 rounded-xl border border-slate-800/60">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>SafePay Financial</span>
-            </div>
-            <div className="flex items-center gap-2 text-slate-400 font-semibold text-sm bg-slate-900/40 px-4 py-2 rounded-xl border border-slate-800/60">
-              <Zap className="w-4 h-4 text-amber-400" />
-              <span>GreenPastures Agri</span>
-            </div>
-            <div className="flex items-center gap-2 text-slate-400 font-semibold text-sm bg-slate-900/40 px-4 py-2 rounded-xl border border-slate-800/60">
-              <Code2 className="w-4 h-4 text-purple-400" />
-              <span>Apex Logistics Kenya</span>
-            </div>
-            <div className="flex items-center gap-2 text-slate-400 font-semibold text-sm bg-slate-900/40 px-4 py-2 rounded-xl border border-slate-800/60">
-              <Sparkles className="w-4 h-4 text-cyan-400" />
-              <span>EduFlow Academy</span>
+
+            <a
+              href="https://jengaflowsolutions.tech/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-slate-300 hover:text-white font-bold text-xs sm:text-sm tracking-wide bg-slate-900/80 px-4 py-2 rounded-xl border border-slate-800 transition-all hover:border-purple-500/40 hover:scale-105"
+            >
+              <span className="w-2 h-2 rounded-full bg-purple-500" />
+              <span>JENGAFLOW TECH</span>
+            </a>
+
+            <div className="flex items-center gap-2 text-slate-400 font-semibold text-xs sm:text-sm bg-slate-900/40 px-4 py-2 rounded-xl border border-slate-800/60">
+              <Code2 className="w-4 h-4 text-cyan-400" />
+              <span>Apex Express Logistics</span>
             </div>
           </div>
         </div>

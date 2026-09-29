@@ -25,7 +25,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ selectedPlan, on
     phone: '',
     company: '',
     package: selectedPlan || 'Business Pro',
-    budget: 'Ksh 30k - Ksh 100k',
+    paymentPlan: 'Milestone Installments (Recommended)',
+    budget: 'Ksh 20k - Ksh 50k',
     message: '',
   });
 
@@ -63,9 +64,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ selectedPlan, on
           phone: formData.phone,
           company: formData.company,
           package: formData.package,
+          payment_plan: formData.paymentPlan,
           budget: formData.budget,
           message: formData.message,
-          subject: `New Project Blueprint Inquiry from ${formData.name} (${formData.package})`,
+          subject: `New Project Inquiry from ${formData.name} (${formData.package}) [${formData.paymentPlan}]`,
         }),
       });
 
@@ -84,7 +86,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ selectedPlan, on
   };
 
   const handleWhatsAppDirect = () => {
-    const text = `Hello Moses,%0A%0A*Name:* ${encodeURIComponent(formData.name || 'Client')}%0A*Phone:* ${encodeURIComponent(formData.phone || 'N/A')}%0A*Company:* ${encodeURIComponent(formData.company || 'N/A')}%0A*Selected Package:* ${encodeURIComponent(formData.package)}%0A*Budget Range:* ${encodeURIComponent(formData.budget)}%0A*Project Scope:* ${encodeURIComponent(formData.message || 'I would like to start a tech solution project.')}`;
+    const text = `Hello Moses,%0A%0A*Name:* ${encodeURIComponent(formData.name || 'Client')}%0A*Phone:* ${encodeURIComponent(formData.phone || 'N/A')}%0A*Company:* ${encodeURIComponent(formData.company || 'N/A')}%0A*Selected Package:* ${encodeURIComponent(formData.package)}%0A*Payment Preference:* ${encodeURIComponent(formData.paymentPlan)}%0A*Budget Range:* ${encodeURIComponent(formData.budget)}%0A*Project Scope:* ${encodeURIComponent(formData.message || 'I would like to discuss a project with milestone installments.')}`;
     window.open(`https://wa.me/254741067333?text=${text}`, '_blank');
   };
 
@@ -330,20 +332,42 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ selectedPlan, on
                       onChange={handleChange}
                       className="w-full bg-slate-950/80 border border-slate-800 focus:border-blue-500 text-slate-100 text-xs rounded-xl px-4 py-3 outline-none transition-all"
                     >
-                      <option value="Landing Pages">Landing Pages (Ksh 15k)</option>
-                      <option value="Small Business">Small Business (Ksh 25k)</option>
-                      <option value="Business Pro">Business Pro (Ksh 45k)</option>
-                      <option value="Ecommerce Store">Ecommerce Store (Ksh 65k)</option>
-                      <option value="EduFlow School System">EduFlow School System (Ksh 119k)</option>
-                      <option value="CareFlow Hospital ERP">CareFlow Hospital ERP (Ksh 189k)</option>
-                      <option value="GraceFlow Church Suite">GraceFlow Church Suite (Ksh 79k)</option>
-                      <option value="PeopleFlow HR & Payroll">PeopleFlow HR & Payroll (Ksh 149k)</option>
-                      <option value="RetailFlow POS System">RetailFlow POS System (Ksh 99k)</option>
-                      <option value="EstateFlow Rental System">EstateFlow Property (Ksh 199k)</option>
+                      <option value="Landing Pages (Ksh 19,500)">Landing Pages (Ksh 19,500 / $150)</option>
+                      <option value="Small Business (Ksh 29,500)">Small Business (Ksh 29,500 / $230)</option>
+                      <option value="Business Pro (Ksh 44,500)">Business Pro (Ksh 44,500 / $345)</option>
+                      <option value="Ecommerce Store (Ksh 69,500)">Ecommerce Store (Ksh 69,500 / $540)</option>
+                      <option value="GraceFlow Church Suite (Ksh 59,500)">GraceFlow Church Suite (Ksh 59,500)</option>
+                      <option value="RetailFlow POS (Ksh 64,500)">RetailFlow POS (Ksh 64,500)</option>
+                      <option value="EduFlow School System (Ksh 69,500)">EduFlow School System (Ksh 69,500)</option>
+                      <option value="PayFlow Salary & Banking (Ksh 74,500)">PayFlow Salary & Banking (Ksh 74,500)</option>
+                      <option value="PeopleFlow HR & Payroll (Ksh 79,500)">PeopleFlow HR & Payroll (Ksh 79,500)</option>
+                      <option value="StockFlow Supply Chain (Ksh 84,500)">StockFlow Supply Chain (Ksh 84,500)</option>
+                      <option value="CareFlow Hospital ERP (Ksh 89,500)">CareFlow Hospital ERP (Ksh 89,500)</option>
+                      <option value="EstateFlow Property (Ksh 89,500)">EstateFlow Property (Ksh 89,500)</option>
                       <option value="Custom Enterprise Solution">Custom Enterprise Solution</option>
                     </select>
                   </div>
 
+                  {/* Payment Structure Selector */}
+                  <div>
+                    <label className="block text-xs font-medium text-slate-300 mb-1.5">
+                      Payment Preference
+                    </label>
+                    <select
+                      name="paymentPlan"
+                      value={formData.paymentPlan}
+                      onChange={handleChange}
+                      className="w-full bg-slate-950/80 border border-slate-800 focus:border-blue-500 text-slate-100 text-xs rounded-xl px-4 py-3 outline-none transition-all"
+                    >
+                      <option value="Milestone Installments (2 to 3 Splits)">Milestone Installments (2 to 3 Splits)</option>
+                      <option value="Two-Stage Split (50% start / 50% launch)">Two-Stage Split (50% start / 50% launch)</option>
+                      <option value="Three-Stage Split (40% / 30% / 30%)">Three-Stage Split (40% / 30% / 30%)</option>
+                      <option value="Full Upfront Payment (100%)">Full Upfront Payment (100%)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Budget Selector */}
                   <div>
                     <label className="block text-xs font-medium text-slate-300 mb-1.5">
@@ -355,11 +379,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ selectedPlan, on
                       onChange={handleChange}
                       className="w-full bg-slate-950/80 border border-slate-800 focus:border-blue-500 text-slate-100 text-xs rounded-xl px-4 py-3 outline-none transition-all"
                     >
-                      <option value="Ksh 15k - Ksh 30k">Ksh 15k - Ksh 30k</option>
-                      <option value="Ksh 30k - Ksh 75k">Ksh 30k - Ksh 75k</option>
-                      <option value="Ksh 75k - Ksh 150k">Ksh 75k - Ksh 150k</option>
-                      <option value="Ksh 150k+ Enterprise">Ksh 150k+ Enterprise</option>
+                      <option value="Ksh 19,500 - Ksh 35,000">Ksh 19,500 - Ksh 35,000</option>
+                      <option value="Ksh 35,000 - Ksh 70,000">Ksh 35,000 - Ksh 70,000</option>
+                      <option value="Ksh 70,000 - Ksh 90,000">Ksh 70,000 - Ksh 90,000</option>
+                      <option value="Ksh 90,000+ Enterprise">Ksh 90,000+ Enterprise</option>
                     </select>
+                  </div>
+
+                  {/* Empty filler or currency tag */}
+                  <div className="flex items-center text-xs text-slate-400 bg-slate-950/60 p-3 rounded-xl border border-slate-800 self-end">
+                    <span className="text-emerald-400 font-semibold mr-1.5">Note:</span> Installments available on all website & software tiers.
                   </div>
                 </div>
 

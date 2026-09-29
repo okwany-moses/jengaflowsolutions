@@ -13,8 +13,12 @@ export interface FlagshipProduct {
   id: string;
   title: string;
   category: string;
-  price: string; // e.g., "Ksh 89,000" or "Ksh 149,000"
+  price: string; // e.g., "Ksh 59,500" or "$460"
   numericPrice: number;
+  priceUsd: string;
+  priceEur: string;
+  priceGbp: string;
+  installments?: string;
   description: string;
   features: string[];
   badges: string[];
@@ -53,6 +57,7 @@ export interface CaseStudy {
   clientName: string;
   title: string;
   tag: string;
+  category?: 'all' | 'live' | 'faith' | 'enterprise';
   summary: string;
   metrics: { label: string; value: string }[];
   quote: string;
@@ -60,7 +65,9 @@ export interface CaseStudy {
   authorRole: string;
   techUsed: string[];
   liveUrl?: string;
+  domain?: string;
   image: string;
+  featured?: boolean;
 }
 
 export interface Testimonial {
@@ -105,6 +112,15 @@ export interface PricingTier {
   id: string;
   name: string;
   price: string;
+  priceKes: string;
+  priceUsd: string;
+  priceEur: string;
+  priceGbp: string;
+  numericKes: number;
+  numericUsd: number;
+  numericEur: number;
+  numericGbp: number;
+  installments?: string;
   description: string;
   popular?: boolean;
   dark?: boolean;

@@ -2,21 +2,53 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { FLAGSHIP_PRODUCTS } from '../data/mockData';
 import { FlagshipProduct } from '../types';
-import { CheckCircle2, Sparkles, ExternalLink, MessageCircle, Zap, Tag } from 'lucide-react';
+import {
+  CheckCircle2,
+  Sparkles,
+  ExternalLink,
+  MessageCircle,
+  Tag,
+  Globe2,
+} from 'lucide-react';
 
 interface FlagshipProductsProps {
   onRequestDemo: (productName: string, productPrice?: string) => void;
 }
 
+type CurrencyType = 'KES' | 'USD' | 'EUR';
+
 export const FlagshipProducts: React.FC<FlagshipProductsProps> = ({ onRequestDemo }) => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
+  const [currency, setCurrency] = useState<CurrencyType>('KES');
 
-  const categories = ['All', 'Education & Academics', 'Healthcare & Medical', 'Faith & Non-Profit', 'Human Resources', 'Retail & Wholesale', 'Real Estate'];
+  const categories = [
+    'All',
+    'Faith & Non-Profit',
+    'Education & Academics',
+    'Retail & Wholesale',
+    'Finance & Banking',
+    'Human Resources',
+    'Logistics & Distribution',
+    'Healthcare & Medical',
+    'Real Estate',
+  ];
 
   const filteredProducts = FLAGSHIP_PRODUCTS.filter((product) => {
     if (activeCategory === 'All') return true;
     return product.category === activeCategory;
   });
+
+  const getProductPrice = (product: FlagshipProduct) => {
+    switch (currency) {
+      case 'USD':
+        return product.priceUsd;
+      case 'EUR':
+        return product.priceEur;
+      case 'KES':
+      default:
+        return product.price;
+    }
+  };
 
   return (
     <section id="products" className="py-24 bg-slate-900/60 relative overflow-hidden">
@@ -26,17 +58,55 @@ export const FlagshipProducts: React.FC<FlagshipProductsProps> = ({ onRequestDem
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Title */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-14">
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-950/80 border border-purple-500/30 text-purple-300 text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5 text-purple-400" />
-            <span>Turnkey Flagship Software Packages</span>
+            <span>Turnkey Flagship Software Suites</span>
           </div>
+
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
             Ready-to-Deploy <span className="gradient-text">Enterprise Software Systems</span>
           </h2>
+
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-            Pre-built, customizable business management portals designed for Kenyan enterprises. All prices range between <span className="text-emerald-400 font-bold">Ksh 79,000</span> to <span className="text-emerald-400 font-bold">Ksh 199,000</span> with full source code ownership options and M-Pesa integration.
+            Production-tested, fully customizable business platforms engineered for organizations in Kenya, the US, and Europe. All customized software systems range strictly between <span className="text-emerald-400 font-bold">Ksh 59,500 to Ksh 89,500</span> ($465 – $695) with flexible 3-stage milestone installments and full source code ownership.
           </p>
+        </div>
+
+        {/* Currency Switcher */}
+        <div className="flex items-center justify-center gap-2 mb-8">
+          <div className="inline-flex p-1 bg-slate-950/90 border border-slate-800 rounded-xl text-xs font-semibold">
+            <button
+              onClick={() => setCurrency('KES')}
+              className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+                currency === 'KES'
+                  ? 'bg-purple-600 text-white shadow-md'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              🇰🇪 Ksh (KES)
+            </button>
+            <button
+              onClick={() => setCurrency('USD')}
+              className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+                currency === 'USD'
+                  ? 'bg-purple-600 text-white shadow-md'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              🇺🇸 $ (USD)
+            </button>
+            <button
+              onClick={() => setCurrency('EUR')}
+              className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+                currency === 'EUR'
+                  ? 'bg-purple-600 text-white shadow-md'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              🇪🇺 € (EUR)
+            </button>
+          </div>
         </div>
 
         {/* Categories */}
@@ -45,9 +115,9 @@ export const FlagshipProducts: React.FC<FlagshipProductsProps> = ({ onRequestDem
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300 cursor-pointer ${
+              className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer ${
                 activeCategory === cat
-                  ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30 border border-purple-400/40 scale-105'
+                  ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30 border border-purple-400/40'
                   : 'bg-slate-950/80 text-slate-400 hover:text-white border border-slate-800'
               }`}
             >
@@ -84,9 +154,9 @@ export const FlagshipProducts: React.FC<FlagshipProductsProps> = ({ onRequestDem
                   </div>
 
                   {/* Price Tag Badge */}
-                  <div className="absolute top-4 right-4 bg-emerald-500/90 text-slate-950 px-3.5 py-1.5 rounded-full text-sm font-extrabold font-mono shadow-lg flex items-center gap-1">
+                  <div className="absolute top-4 right-4 bg-emerald-500/95 text-slate-950 px-3.5 py-1.5 rounded-full text-sm font-extrabold font-mono shadow-lg flex items-center gap-1 tabular-nums">
                     <Tag className="w-3.5 h-3.5 fill-current" />
-                    <span>{product.price}</span>
+                    <span>{getProductPrice(product)}</span>
                   </div>
 
                   {/* Title overlay */}
@@ -103,7 +173,15 @@ export const FlagshipProducts: React.FC<FlagshipProductsProps> = ({ onRequestDem
                     {product.description}
                   </p>
 
-                  {/* Audience */}
+                  {/* Installment Plan Badge */}
+                  {product.installments && (
+                    <div className="flex items-center gap-2 text-[11px] font-medium text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-3 py-1.5 rounded-lg">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      <span>Installments: {product.installments}</span>
+                    </div>
+                  )}
+
+                  {/* Target Audience */}
                   <div className="text-xs text-slate-400 bg-slate-900/80 px-3 py-2 rounded-lg border border-slate-800">
                     <span className="text-slate-300 font-semibold">Target Audience:</span> {product.targetAudience}
                   </div>
@@ -140,7 +218,7 @@ export const FlagshipProducts: React.FC<FlagshipProductsProps> = ({ onRequestDem
               {/* Bottom Action Footer */}
               <div className="p-6 pt-0 mt-4 border-t border-slate-800/80 flex flex-col sm:flex-row items-center gap-3">
                 <button
-                  onClick={() => onRequestDemo(product.title, product.price)}
+                  onClick={() => onRequestDemo(product.title, getProductPrice(product))}
                   className="w-full sm:w-1/2 py-3 px-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-xs shadow-lg shadow-blue-600/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
@@ -148,7 +226,7 @@ export const FlagshipProducts: React.FC<FlagshipProductsProps> = ({ onRequestDem
                 </button>
 
                 <a
-                  href={`https://wa.me/254741067333?text=Hello%20Moses,%20I%20am%20interested%20in%20the%20${encodeURIComponent(product.title)}%20package%20priced%20at%20${encodeURIComponent(product.price)}.`}
+                  href={`https://wa.me/254741067333?text=Hello%20Moses,%20I%20am%20interested%20in%20the%20${encodeURIComponent(product.title)}%20package%20priced%20at%20${encodeURIComponent(getProductPrice(product))}%20with%20flexible%20milestone%20installment%20plan.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full sm:w-1/2 py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-emerald-400 font-semibold text-xs transition-all flex items-center justify-center gap-2"

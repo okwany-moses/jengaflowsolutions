@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { StatsSection } from './components/StatsSection';
 import { BentoServices } from './components/BentoServices';
 import { FlagshipProducts } from './components/FlagshipProducts';
 import { WhyChooseUs } from './components/WhyChooseUs';
@@ -57,10 +56,7 @@ export default function App() {
         {/* 1. Hero */}
         <Hero onRequestDemo={handleOpenDemoModal} />
 
-        {/* 2. Stats & Impact */}
-        <StatsSection />
-
-        {/* 3. Bento Grid Services (16 Services) */}
+        {/* 2. Bento Grid Services (16 Services) */}
         <BentoServices onRequestDemo={handleOpenDemoModal} />
 
         {/* 4. Flagship Products (8 Systems, Ksh 79k - 199k) */}
